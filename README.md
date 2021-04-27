@@ -39,3 +39,7 @@ curl http://[EXTERNAL_IP_ADDRESS]:5000/score \
     --header "Content-Type: application/json" \
     --data '{"X": [1, 2]}'
 ```
+ ## 4. Make Predictions with Real Time Data
+ ```bash
+ python3 predict.py --name=TWTR
+ ```
