@@ -9,6 +9,13 @@ docker tag ml-k8s gcr.io/[PROJECT-ID]/ml-k8s
 docker push gcr.io/[PROJECT-ID]/ml-k8s
 ```
 ## 2. Deploy on Kubernetes
+### 2.1 Install Kustomization
+```bash
+tar xzf ./kustomize_v4.1.2_linux_amd64.tar.gz
+
+sudo mv kustomize /usr/bin/
+```
+### 2.2 Setting up and deploy
 ```bash
 gcloud container clusters create k8s-ml-cluster --num-nodes 3 --machine-type g1-small --zone us-west1-b
 
