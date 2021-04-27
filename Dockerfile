@@ -4,4 +4,4 @@ COPY . .
 RUN pip install -r requirement.txt
 
 EXPOSE 5000
-CMD ["python", "api.py"]
+CMD ["python", "app.py"]

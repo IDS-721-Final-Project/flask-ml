@@ -1,1 +1,5 @@
 flask
+numpy
+scikit-learn
+pandas
+datetime

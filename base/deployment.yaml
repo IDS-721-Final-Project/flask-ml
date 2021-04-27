@@ -18,7 +18,7 @@ spec:
         env: qa
     spec:
       containers:
-      - image: gcr.io/flaskml-312001/ml-k8s@sha256:2c1f57412717db9a4f6ea03756a75edc4c68ed24bbeff80d2d8bfdf076d08cef # Docker image name, that we pushed to GCR
+      - image: gcr.io/flaskml-312001/ml-k8s:latest # Docker image name, that we pushed to GCR
         name: ml-k8s    # POD name 
         ports:
         - containerPort: 5000
