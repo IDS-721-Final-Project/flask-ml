@@ -34,10 +34,7 @@ kubectl get service -n mlops
 
 ## 3. Test the Deployed Model
 ```bash
-curl http://[EXTERNAL_IP_ADDRESS]:5000/score \
-    --request POST \
-    --header "Content-Type: application/json" \
-    --data '{"X": [1, 2]}'
+curl http://[EXTERNAL_IP_ADDRESS]:5000/balance
 ```
  ## 4. Make Predictions with Real Time Data
  ```bash
