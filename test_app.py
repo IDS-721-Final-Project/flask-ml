@@ -346,22 +346,23 @@ def reset():
     return jsonify(True)
   
 def test_app():
+    with open('model.pkl', 'rb') as fopen:
+    model = pickle.load(fopen)
+
+    df = pd.read_csv('TWTR.csv')
+    real_trend = df['Close'].tolist()
+    parameters = [df['Close'].tolist(), df['Volume'].tolist()]
+    minmax = MinMaxScaler(feature_range = (100, 200)).fit(np.array(parameters).T)
+    scaled_parameters = minmax.transform(np.array(parameters).T).T.tolist()
+    initial_money = np.max(parameters[0]) * 2
+
+    agent = Agent(model = model,
+                  timeseries = scaled_parameters,
+                  skip = skip,
+                  initial_money = initial_money,
+                  real_trend = real_trend,
+                  minmax = minmax)
     #reset()
     assert 1000 == 1000
 
-with open('model.pkl', 'rb') as fopen:
-    model = pickle.load(fopen)
 
-df = pd.read_csv('TWTR.csv')
-real_trend = df['Close'].tolist()
-parameters = [df['Close'].tolist(), df['Volume'].tolist()]
-minmax = MinMaxScaler(feature_range = (100, 200)).fit(np.array(parameters).T)
-scaled_parameters = minmax.transform(np.array(parameters).T).T.tolist()
-initial_money = np.max(parameters[0]) * 2
-
-agent = Agent(model = model,
-              timeseries = scaled_parameters,
-              skip = skip,
-              initial_money = initial_money,
-              real_trend = real_trend,
-              minmax = minmax)
