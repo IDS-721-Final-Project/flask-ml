@@ -4,7 +4,7 @@ import pickle
 import json
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, time
 
 app = Flask(__name__)
 
