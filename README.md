@@ -9,18 +9,20 @@ docker tag ml-k8s gcr.io/[PROJECT-ID]/ml-k8s
 docker push gcr.io/[PROJECT-ID]/ml-k8s
 ```
 ## 2. Deploy on Kubernetes
-### 2.1 Install Kustomization
+### 2.1 Setting up Kubernetes Clusters
+```bash
+gcloud container clusters create k8s-ml-cluster --num-nodes 3 --machine-type g1-small --zone us-west1-b
+
+gcloud container clusters get-credentials k8s-ml-cluster --zone us-west1-b --project [PROJECT_ID]
+```
+### 2.2 Install Kustomization
 ```bash
 tar xzf ./kustomize_v4.1.2_linux_amd64.tar.gz
 
 sudo mv kustomize /usr/bin/
 ```
-### 2.2 Setting up and deploy
+### 2.3 Deploy the Pod
 ```bash
-gcloud container clusters create k8s-ml-cluster --num-nodes 3 --machine-type g1-small --zone us-west1-b
-
-gcloud container clusters get-credentials k8s-ml-cluster --zone us-west1-b --project [PROJECT_ID]
-
 kubectl apply --kustomize=${PWD}/base/ --record=true
 ```
 Optional:
@@ -34,9 +36,13 @@ kubectl get service -n mlops
 
 ## 3. Test the Deployed Model
 ```bash
-curl http://[EXTERNAL_IP_ADDRESS]:5000/balance
+curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
- ## 4. Make Predictions with Real Time Data
+Note: You can get the external ip address from this command:
+```bash
+kubectl get service -n mlops
+```
+## 4. Make Predictions with Real Time Data
  ```bash
  python3 predict.py --name=TWTR
  ```
