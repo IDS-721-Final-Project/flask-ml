@@ -339,25 +339,24 @@ class Agent:
         total_gains = real_starting_money - real_initial_money
         return states_buy, states_sell, total_gains, invest
 
-
-
-def reset():
-    with open('model.pkl', 'rb') as fopen:
+with open('model.pkl', 'rb') as fopen:
     model = pickle.load(fopen)
 
-    df = pd.read_csv('TWTR.csv')
-    real_trend = df['Close'].tolist()
-    parameters = [df['Close'].tolist(), df['Volume'].tolist()]
-    minmax = MinMaxScaler(feature_range = (100, 200)).fit(np.array(parameters).T)
-    scaled_parameters = minmax.transform(np.array(parameters).T).T.tolist()
-    initial_money = np.max(parameters[0]) * 2
+df = pd.read_csv('TWTR.csv')
+real_trend = df['Close'].tolist()
+parameters = [df['Close'].tolist(), df['Volume'].tolist()]
+minmax = MinMaxScaler(feature_range = (100, 200)).fit(np.array(parameters).T)
+scaled_parameters = minmax.transform(np.array(parameters).T).T.tolist()
+initial_money = np.max(parameters[0]) * 2
 
-    agent = Agent(model = model,
-                  timeseries = scaled_parameters,
-                  skip = skip,
-                  initial_money = initial_money,
-                  real_trend = real_trend,
-                  minmax = minmax)
+agent = Agent(model = model,
+              timeseries = scaled_parameters,
+              skip = skip,
+              initial_money = initial_money,
+              real_trend = real_trend,
+              minmax = minmax)
+
+def reset():
     money = 1000
     agent.reset_capital(money)
     return jsonify(True)
