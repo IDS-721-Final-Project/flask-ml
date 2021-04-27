@@ -339,6 +339,16 @@ class Agent:
         total_gains = real_starting_money - real_initial_money
         return states_buy, states_sell, total_gains, invest
 
+
+def reset():
+    money = 1000
+    agent.reset_capital(money)
+    return jsonify(True)
+  
+def test_app():
+    #reset()
+    assert 1000 == 1000
+
 with open('model.pkl', 'rb') as fopen:
     model = pickle.load(fopen)
 
@@ -355,12 +365,3 @@ agent = Agent(model = model,
               initial_money = initial_money,
               real_trend = real_trend,
               minmax = minmax)
-
-def reset():
-    money = 1000
-    agent.reset_capital(money)
-    return jsonify(True)
-  
-def test_app():
-    #reset()
-    assert 1000 == 1000
