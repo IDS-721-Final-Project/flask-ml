@@ -5,6 +5,7 @@ import json
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 from datetime import datetime, time
+import pytest
 
 app = Flask(__name__)
 
@@ -360,6 +361,6 @@ def reset():
     agent.reset_capital(money)
     return jsonify(True)
   
-if __name__ == '__main__':
+def test_app():
     reset()
     assert agent._capital == 1000
