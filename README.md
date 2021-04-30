@@ -1,6 +1,7 @@
 # flask-ml
 [![Python application](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml)
 ## 1. Build and Push Docker Container
+First enter the flask-ml directory where the `Dockerfile` is stored.
 ```bash
 docker build -t ml-k8s .
 
