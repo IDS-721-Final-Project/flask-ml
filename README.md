@@ -9,6 +9,17 @@ docker tag ml-k8s gcr.io/[PROJECT-ID]/ml-k8s
 docker push gcr.io/[PROJECT-ID]/ml-k8s
 ```
 ## 2. Deploy on Kubernetes
+The overall structure of the project is as follows:
+```
+| api.py
+| base
+  | namespace.yaml
+  | deployment.yaml
+  | service.yaml
+  | kustomize.yaml
+| Dockerfile
+```
+
 ### 2.1 Setting up Kubernetes Clusters
 ```bash
 gcloud container clusters create k8s-ml-cluster --num-nodes 3 --machine-type g1-small --zone us-west1-b
