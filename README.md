@@ -3,7 +3,7 @@
 
 # Introduction
 This project puts a trained machine learning (ML) model into production environments.
-- [] include the original deep evolution paper
+***TODO*** include the original deep evolution paper
 
 
 # Usage
@@ -78,3 +78,5 @@ curl http://[EXTERNAL_IP_ADDRESS]:5000/
  ```bash
  python3 predict.py --name=TWTR
  ```
+ 
+ ***TODO*** Sample output?
