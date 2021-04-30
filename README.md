@@ -1,6 +1,8 @@
 # flask-ml
 [![Python application](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml)
 
+***TODO: Plus pytest***
+
 # Introduction
 
 ***TODO: Needs refinement***
