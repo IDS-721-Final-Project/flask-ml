@@ -1,7 +1,16 @@
 # flask-ml
 [![Python application](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml)
+
+# Introduction
+This project puts a trained machine learning (ML) model into production environments.
+- [] include the original deep evolution paper
+
+
+# Usage
+
 ## 1. Build and Push Docker Container
-First enter the `flask-ml` directory where the `Dockerfile` is stored.
+First enter the `flask-ml` directory where the `Dockerfile` is stored. Also replace the `[PROJECT-ID]` with your project ID.
+
 ```bash
 docker build -t ml-k8s .
 
