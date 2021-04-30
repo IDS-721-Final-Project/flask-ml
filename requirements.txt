@@ -3,3 +3,5 @@ numpy
 scikit-learn
 pandas
 datetime
+yfinance
+yahoofinancials
