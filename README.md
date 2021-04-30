@@ -21,42 +21,47 @@ The overall structure of the project is as follows
 ```
 
 ### 2.1 Setting up Kubernetes Clusters
-Create a cluster
+Create a cluster called `k8s-ml-cluster`:
 ```bash
 gcloud container clusters create k8s-ml-cluster --num-nodes 3 --machine-type g1-small --zone us-west1-b
 ```
-Connect to the cluster
+Connect to the cluster `k8s-ml-cluster`:
 ```bash
 gcloud container clusters get-credentials k8s-ml-cluster --zone us-west1-b --project [PROJECT_ID]
 ```
 ### 2.2 Install Kustomize
-$Kustomize$ is used to easily customize raw, template-free YAML files, without touching the hard-to-manage original YAML.
+`Kustomize` is used to easily customize raw, template-free YAML files, without touching the hard-to-manage original YAML.
 ```bash
 tar xzf ./kustomize_v4.1.2_linux_amd64.tar.gz
 
 sudo mv kustomize /usr/bin/
 ```
 ### 2.3 Deploy the Pod
+After setting up the YAML, we use the following command to deploy our app:
 ```bash
 kubectl apply --kustomize=${PWD}/base/ --record=true
 ```
-Optional:
+#### Optional:
+See all components deployed into the namespace:
 ```bash
 kubectl get ns
-
+```
+See the status of the deployment:
+```bash
 kubectl get deployment -n mlops
+```
 
+See the status of the service:
+```bash
 kubectl get service -n mlops
 ```
 
 ## 3. Test the Deployed Model
+You can get `[EXTERNAL_IP_ADDRESS]` by using the previous command (to see the status of the service):
 ```bash
 curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
-Note: You can get the external ip address from this command:
-```bash
-kubectl get service -n mlops
-```
+
 ## 4. Make Predictions with Real Time Data
  ```bash
  python3 predict.py --name=TWTR
