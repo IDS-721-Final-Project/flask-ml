@@ -6,8 +6,14 @@
 
 # Introduction
 
-***TODO: Needs refinement***
 This project puts a trained machine learning (ML) model into production environments. We adopt an trained model using Deep Evolution Strategy, which uses genetic algorithms to filter the neural network (such that backpropagation is not needed), and deploy it onto Google Cloud Kubernetes Engine. This creates a microservice-based application that ensures continuous availability.
+
+## Architecture
+![trade-robot-architecture](https://user-images.githubusercontent.com/37522943/116759840-5690d480-a9e1-11eb-8eda-f68b20789755.png)
+
+This project contains two parts: 1. ***flask-ml***: Dockerize the backend functionality (grabs stock market info, does predictions etc.) 2. ***trading_robot***: The place where users can specify the interested stock. Then the robot will automatically trade on it.
+
+
 
 ***TODO: Trade bot with this?***
 Also, we have a trade bot that can ?
@@ -105,11 +111,7 @@ Test the model:
 curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
 
-## 4. Make Predictions with Real Time Data
 
- ```bash
- python3 predict.py --name=TWTR
- ```
  
  ***TODO: Sample output? how to use?*** 
  
