@@ -2,9 +2,14 @@
 [![Python application](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml)
 
 # Introduction
-This project puts a trained machine learning (ML) model into production environments.
 
-***TODO*** include the original deep evolution paper
+***TODO: Needs refinement***
+This project puts a trained machine learning (ML) model into production environments. We adopt an trained model using Deep Evolution Strategy, which uses genetic algorithms to filter the neural network (such that backpropagation is not needed), and deploy it onto Google Cloud Kubernetes Engine. This creates a microservice-based application that ensures continuous availability.
+
+***TODO: Trade bot with this?***
+Also, we have a trade bot that can ?
+
+***TODO:include the original deep evolution paper*** 
 
 
 # Usage
@@ -80,4 +85,6 @@ curl http://[EXTERNAL_IP_ADDRESS]:5000/
  python3 predict.py --name=TWTR
  ```
  
- ***TODO*** Sample output?
+ ***TODO: Sample output? how to use?*** 
+ 
+ ***TODO: Overall, how to connect the two projects?***
