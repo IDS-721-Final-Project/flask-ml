@@ -13,6 +13,7 @@ skip = 1
 layer_size = 500
 output_size = 3
 
+
 def softmax(z):
     assert len(z.shape) == 2
     s = np.max(z, axis=1)
@@ -22,7 +23,8 @@ def softmax(z):
     div = div[:, np.newaxis]
     return e_x / div
 
-def get_state(parameters, t, window_size = 20):
+
+def get_state(parameters, t, window_size=20):
     outside = []
     d = t - window_size + 1
     for parameter in parameters:
@@ -44,9 +46,7 @@ class Deep_Evolution_Strategy:
 
     inputs = None
 
-    def __init__(
-        self, weights, reward_function, population_size, sigma, learning_rate
-    ):
+    def __init__(self, weights, reward_function, population_size, sigma, learning_rate):
         self.weights = weights
         self.reward_function = reward_function
         self.population_size = population_size
@@ -62,8 +62,8 @@ class Deep_Evolution_Strategy:
 
     def get_weights(self):
         return self.weights
-    
-    def train(self, epoch = 100, print_every = 1):
+
+    def train(self, epoch=100, print_every=1):
         lasttime = time.time()
         for i in range(epoch):
             population = []
@@ -89,11 +89,11 @@ class Deep_Evolution_Strategy:
                 )
             if (i + 1) % print_every == 0:
                 print(
-                    'iter %d. reward: %f'
-                    % (i + 1, self.reward_function(self.weights))
+                    "iter %d. reward: %f" % (i + 1, self.reward_function(self.weights))
                 )
-        print('time taken to train:', time.time() - lasttime, 'seconds')
-        
+        print("time taken to train:", time.time() - lasttime, "seconds")
+
+
 class Model:
     def __init__(self, input_size, layer_size, output_size):
         self.weights = [
@@ -168,16 +168,16 @@ class Agent:
         self._queue.append(scaled_data)
         if len(self._queue) < window_size:
             return {
-                'status': 'data not enough to trade',
-                'action': 'fail',
-                'balance': self._capital,
-                'timestamp': str(datetime.now()),
+                "status": "data not enough to trade",
+                "action": "fail",
+                "balance": self._capital,
+                "timestamp": str(datetime.now()),
             }
         state = self.get_state(
             window_size - 1,
             self._inventory,
             self._scaled_capital,
-            timeseries = np.array(self._queue).T.tolist(),
+            timeseries=np.array(self._queue).T.tolist(),
         )
         action, prob = self.act_softmax(state)
         print(prob)
@@ -186,18 +186,18 @@ class Agent:
             self._scaled_capital -= close
             self._capital -= real_close
             return {
-                'status': 'buy 1 unit, cost %f' % (real_close),
-                'action': 'buy',
-                'balance': self._capital,
-                'timestamp': str(datetime.now()),
+                "status": "buy 1 unit, cost %f" % (real_close),
+                "action": "buy",
+                "balance": self._capital,
+                "timestamp": str(datetime.now()),
             }
         elif action == 2 and len(self._inventory):
             bought_price = self._inventory.pop(0)
             self._scaled_capital += close
             self._capital += real_close
-            scaled_bought_price = self.minmax.inverse_transform(
-                [[bought_price, 2]]
-            )[0, 0]
+            scaled_bought_price = self.minmax.inverse_transform([[bought_price, 2]])[
+                0, 0
+            ]
             try:
                 invest = (
                     (real_close - scaled_bought_price) / scaled_bought_price
@@ -205,19 +205,19 @@ class Agent:
             except:
                 invest = 0
             return {
-                'status': 'sell 1 unit, price %f' % (real_close),
-                'investment': invest,
-                'gain': real_close - scaled_bought_price,
-                'balance': self._capital,
-                'action': 'sell',
-                'timestamp': str(datetime.now()),
+                "status": "sell 1 unit, price %f" % (real_close),
+                "investment": invest,
+                "gain": real_close - scaled_bought_price,
+                "balance": self._capital,
+                "action": "sell",
+                "timestamp": str(datetime.now()),
             }
         else:
             return {
-                'status': 'do nothing',
-                'action': 'nothing',
-                'balance': self._capital,
-                'timestamp': str(datetime.now()),
+                "status": "do nothing",
+                "action": "nothing",
+                "balance": self._capital,
+                "timestamp": str(datetime.now()),
             }
 
     def change_data(self, timeseries, skip, initial_money, real_trend, minmax):
@@ -248,7 +248,7 @@ class Agent:
         z_inventory = (mean_inventory - self._mean) / self._std
         z_capital = (capital - self._mean) / self._std
         concat_parameters = np.concatenate(
-            [state, [[len_inventory, z_inventory, z_capital]]], axis = 1
+            [state, [[len_inventory, z_inventory, z_capital]]], axis=1
         )
         return concat_parameters
 
@@ -272,9 +272,7 @@ class Agent:
                 invest = ((self.trend[t] - bought_price) / bought_price) * 100
                 invests.append(invest)
 
-            state = self.get_state(
-                t + 1, inventory, starting_money, self.timeseries
-            )
+            state = self.get_state(t + 1, inventory, starting_money, self.timeseries)
         invests = np.mean(invests)
         if np.isnan(invests):
             invests = 0
@@ -282,7 +280,7 @@ class Agent:
         return invests * 0.7 + score * 0.3
 
     def fit(self, iterations, checkpoint):
-        self.es.train(iterations, print_every = checkpoint)
+        self.es.train(iterations, print_every=checkpoint)
 
     def buy(self):
         initial_money = self._scaled_capital
@@ -300,14 +298,18 @@ class Agent:
             action, prob = self.act_softmax(state)
             print(t, prob)
 
-            if action == 1 and starting_money >= self.trend[t] and t < (len(self.trend) - 1 - window_size):
+            if (
+                action == 1
+                and starting_money >= self.trend[t]
+                and t < (len(self.trend) - 1 - window_size)
+            ):
                 inventory.append(self.trend[t])
                 real_inventory.append(self.real_trend[t])
                 real_starting_money -= self.real_trend[t]
                 starting_money -= self.trend[t]
                 states_buy.append(t)
                 print(
-                    'day %d: buy 1 unit at price %f, total balance %f'
+                    "day %d: buy 1 unit at price %f, total balance %f"
                     % (t, self.real_trend[t], real_starting_money)
                 )
 
@@ -319,75 +321,73 @@ class Agent:
                 states_sell.append(t)
                 try:
                     invest = (
-                        (self.real_trend[t] - real_bought_price)
-                        / real_bought_price
+                        (self.real_trend[t] - real_bought_price) / real_bought_price
                     ) * 100
                 except:
                     invest = 0
                 print(
-                    'day %d, sell 1 unit at price %f, investment %f %%, total balance %f,'
+                    "day %d, sell 1 unit at price %f, investment %f %%, total balance %f,"
                     % (t, self.real_trend[t], invest, real_starting_money)
                 )
-            state = self.get_state(
-                t + 1, inventory, starting_money, self.timeseries
-            )
+            state = self.get_state(t + 1, inventory, starting_money, self.timeseries)
 
-        invest = (
-            (real_starting_money - real_initial_money) / real_initial_money
-        ) * 100
+        invest = ((real_starting_money - real_initial_money) / real_initial_money) * 100
         total_gains = real_starting_money - real_initial_money
         return states_buy, states_sell, total_gains, invest
 
 
-with open('model.pkl', 'rb') as fopen:
+with open("model.pkl", "rb") as fopen:
     model = pickle.load(fopen)
 
-df = pd.read_csv('TWTR.csv')
-real_trend = df['Close'].tolist()
-parameters = [df['Close'].tolist(), df['Volume'].tolist()]
-minmax = MinMaxScaler(feature_range = (100, 200)).fit(np.array(parameters).T)
+df = pd.read_csv("TWTR.csv")
+real_trend = df["Close"].tolist()
+parameters = [df["Close"].tolist(), df["Volume"].tolist()]
+minmax = MinMaxScaler(feature_range=(100, 200)).fit(np.array(parameters).T)
 scaled_parameters = minmax.transform(np.array(parameters).T).T.tolist()
 initial_money = np.max(parameters[0]) * 2
 
-agent = Agent(model = model,
-              timeseries = scaled_parameters,
-              skip = skip,
-              initial_money = initial_money,
-              real_trend = real_trend,
-              minmax = minmax)
+agent = Agent(
+    model=model,
+    timeseries=scaled_parameters,
+    skip=skip,
+    initial_money=initial_money,
+    real_trend=real_trend,
+    minmax=minmax,
+)
 
-@app.route('/', methods = ['GET'])
+
+@app.route("/", methods=["GET"])
 def hello():
-    return jsonify({'status': 'OK'})
+    return jsonify({"status": "OK"})
 
 
-@app.route('/inventory', methods = ['GET'])
+@app.route("/inventory", methods=["GET"])
 def inventory():
     return jsonify(agent._inventory)
 
 
-@app.route('/queue', methods = ['GET'])
+@app.route("/queue", methods=["GET"])
 def queue():
     return jsonify(agent._queue)
 
 
-@app.route('/balance', methods = ['GET'])
+@app.route("/balance", methods=["GET"])
 def balance():
     return jsonify(agent._capital)
 
 
-@app.route('/trade', methods = ['GET'])
+@app.route("/trade", methods=["GET"])
 def trade():
-    data = json.loads(request.args.get('data'))
+    data = json.loads(request.args.get("data"))
     return jsonify(agent.trade(data))
 
 
-@app.route('/reset', methods = ['GET'])
+@app.route("/reset", methods=["GET"])
 def reset():
-    money = json.loads(request.args.get('money'))
+    money = json.loads(request.args.get("money"))
     agent.reset_capital(money)
     return jsonify(True)
 
 
-if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port = 5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
