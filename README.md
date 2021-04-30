@@ -17,6 +17,11 @@ Also, we have a trade bot that can ?
 
 # Usage
 
+## 0. (Optional) Customize the Functionality
+
+If you don't want to use the existing functionality and want to customize it, after your moodification, you can `make` before dockerizing it:
+
+
 
 ## 1. Build and Push Docker Container
 First enter the `flask-ml` directory where the `Dockerfile` is stored. Also replace the `[PROJECT-ID]` with your project ID.
@@ -29,9 +34,7 @@ docker tag ml-k8s gcr.io/[PROJECT-ID]/ml-k8s
 docker push gcr.io/[PROJECT-ID]/ml-k8s
 ```
 
-## 2. 
-
-## 3. Deploy on Kubernetes
+## 2. Deploy on Kubernetes
 
 The overall structure of the project is as follows
 ```
@@ -44,8 +47,7 @@ The overall structure of the project is as follows
 | Dockerfile
 ```
 
-
-### 3.1 Setting up Kubernetes Clusters
+### 2.1 Setting up Kubernetes Clusters
 
 Create a cluster called `k8s-ml-cluster`:
 ```bash
@@ -56,7 +58,7 @@ Connect to the cluster `k8s-ml-cluster`:
 gcloud container clusters get-credentials k8s-ml-cluster --zone us-west1-b --project [PROJECT_ID]
 ```
 
-### 3.2 Install Kustomize
+### 2.2 Install Kustomize
 
 
 `Kustomize` is used to easily customize raw, template-free YAML files, without touching the hard-to-manage original YAML.
@@ -66,7 +68,8 @@ tar xzf ./kustomize_v4.1.2_linux_arm64.tar.gz
 sudo mv kustomize /usr/bin/
 ```
 
-### 3.3 Deploy the Pod
+
+### 2.3 Deploy the Pod
 
 
 After setting up the YAML, we use the following command to deploy our app:
@@ -89,7 +92,7 @@ kubectl get service -n mlops
 ```
 
 
-## 4. Test the Deployed Model
+## 3. Test the Deployed Model
 
 Test the model:
 
@@ -98,7 +101,7 @@ Test the model:
 curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
 
-## 5. Make Predictions with Real Time Data
+## 4. Make Predictions with Real Time Data
 
  ```bash
  python3 predict.py --name=TWTR
