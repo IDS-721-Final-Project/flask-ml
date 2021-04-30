@@ -68,7 +68,9 @@ tar xzf ./kustomize_v4.1.2_linux_arm64.tar.gz
 sudo mv kustomize /usr/bin/
 ```
 
+
 ### 2.3 Deploy the Pod
+
 
 After setting up the YAML, we use the following command to deploy our app:
 ```bash
