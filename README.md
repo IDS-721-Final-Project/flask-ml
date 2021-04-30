@@ -21,6 +21,10 @@ Also, we have a trade bot that can ?
 
 If you don't want to use the existing functionality and want to customize it, after your moodification, you can `make` before dockerizing it:
 
+```
+make
+```
+In the `Makefile`, it `install` new packages, does `pylint` and formatting using `black`. After running `Makefile` you can safely dockerize it in the following steps.
 
 
 ## 1. Build and Push Docker Container
