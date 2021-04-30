@@ -5,3 +5,5 @@ pandas
 datetime
 yfinance
 yahoofinancials
+black
+pytest
