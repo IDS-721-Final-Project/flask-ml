@@ -68,7 +68,6 @@ sudo mv kustomize /usr/bin/
 
 ### 3.3 Deploy the Pod
 
-### 2.3 Deploy the Pod
 
 After setting up the YAML, we use the following command to deploy our app:
 ```bash
