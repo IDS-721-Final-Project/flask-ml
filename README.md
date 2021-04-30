@@ -42,7 +42,7 @@ gcloud container clusters get-credentials k8s-ml-cluster --zone us-west1-b --pro
 ### 2.2 Install Kustomize
 `Kustomize` is used to easily customize raw, template-free YAML files, without touching the hard-to-manage original YAML.
 ```bash
-tar xzf ./kustomize_v4.1.2_linux_amd64.tar.gz
+tar xzf ./kustomize_v4.1.2_linux_arm64.tar.gz
 
 sudo mv kustomize /usr/bin/
 ```
