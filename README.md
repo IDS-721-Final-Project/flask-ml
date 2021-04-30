@@ -9,7 +9,7 @@ docker tag ml-k8s gcr.io/[PROJECT-ID]/ml-k8s
 docker push gcr.io/[PROJECT-ID]/ml-k8s
 ```
 ## 2. Deploy on Kubernetes
-The overall structure of the project is as follows:
+The overall structure of the project is as follows
 ```
 | api.py
 | base
@@ -21,12 +21,16 @@ The overall structure of the project is as follows:
 ```
 
 ### 2.1 Setting up Kubernetes Clusters
+Create a cluster
 ```bash
 gcloud container clusters create k8s-ml-cluster --num-nodes 3 --machine-type g1-small --zone us-west1-b
-
+```
+Connect to the cluster
+```bash
 gcloud container clusters get-credentials k8s-ml-cluster --zone us-west1-b --project [PROJECT_ID]
 ```
-### 2.2 Install Kustomization
+### 2.2 Install Kustomize
+$Kustomize$ is used to easily customize raw, template-free YAML files, without touching the hard-to-manage original YAML.
 ```bash
 tar xzf ./kustomize_v4.1.2_linux_amd64.tar.gz
 
