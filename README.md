@@ -9,6 +9,27 @@ This project puts a trained machine learning (ML) model into production environm
 
 # Usage
 
+## Preparation for GCP (Google Cloud Platform)
+Before starting the deployment, make sure that the GCP project and account permissions are settled.
+
+- To create a project on GCP
+```bash
+gcloud auth login
+
+gcloud projects create [Project ID]
+
+gcloud config set project [Project ID]
+```
+- To Enable the container service
+
+Make sure the project billing is enabled.
+```bash
+gcloud components update
+
+gcloud services enable containerregistry.googleapis.com
+```
+Wait for some time to take effect after operations.
+
 ## 1. Build and Push Docker Container
 First enter the `flask-ml` directory where the `Dockerfile` is stored. Also replace the `[PROJECT-ID]` with your project ID.
 
