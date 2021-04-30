@@ -57,7 +57,7 @@ kubectl get service -n mlops
 ```
 
 ## 3. Test the Deployed Model
-You can get `[EXTERNAL_IP_ADDRESS]` by using the previous command (to see the status of the service):
+Test the model (You can get `[EXTERNAL_IP_ADDRESS]` by using the previous command (to see the status of the service)):
 ```bash
 curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
