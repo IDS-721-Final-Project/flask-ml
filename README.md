@@ -11,7 +11,11 @@ This project puts a trained machine learning (ML) model into production environm
 ## Architecture
 ![trade-robot-architecture](https://user-images.githubusercontent.com/37522943/116759840-5690d480-a9e1-11eb-8eda-f68b20789755.png)
 
-This project contains two parts: 1. ***flask-ml***: Dockerize the backend functionality (grabs stock market info, does predictions etc.) 2. ***trading_robot***: The place where users can specify the interested stock. Then the robot will automatically trade on it.
+This project contains two parts: 
+
+1. ***flask-ml***: Dockerize the backend functionality (grabs stock market info, does predictions etc.) 
+
+2. ***trading_robot***: The place where users can specify the interested stock. Then the robot will automatically trade on it.
 
 
 
