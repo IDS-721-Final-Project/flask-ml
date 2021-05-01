@@ -13,17 +13,11 @@ This project puts a trained machine learning (ML) model into production environm
 
 This project contains two parts: 
 
-1. ***flask-ml***: Dockerize the backend functionality (grabs stock market info, does predictions etc.) 
+1. ***flask-ml***: Dockerized backend functionality deployed on Kubernetes (grabs stock market info, does predictions using Deep Evolution Strategy etc.) 
 
 2. ***trading_robot***: The place where users can specify the interested stock. Then the robot will automatically trade on it.
 
-
-
-***TODO: Trade bot with this?***
-Also, we have a trade bot that can ?
-
-***TODO:include the original deep evolution paper*** 
-
+This repo is for the backend Kubernetes service part. How to use the trading robot is covered at the end.
 
 # Usage
 
@@ -115,10 +109,6 @@ Test the model:
 curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
 
-
- 
- ***TODO: Sample output? how to use?*** 
- 
  ***TODO: Overall, how to connect the two projects?***
  
- [>Next: Do Predictions with trading_robot interface](https://github.com/IDS-721-Final-Project/trading_robot)
+ [>> Next: Do Predictions with trading_robot interface](https://github.com/IDS-721-Final-Project/trading_robot)
