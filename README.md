@@ -2,8 +2,6 @@
 [![Python application](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/IDS-721-Final-Project/flask-ml/actions/workflows/python-app.yml)
 
 
-***TODO: Plus pytest***
-
 # Introduction
 
 This project puts a trained machine learning (ML) model into production environments. We adopt an trained model using Deep Evolution Strategy, which uses genetic algorithms to filter the neural network (such that backpropagation is not needed), and deploy it onto Google Cloud Kubernetes Engine. This creates a microservice-based application that ensures continuous availability.
