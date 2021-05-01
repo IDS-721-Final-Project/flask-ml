@@ -108,7 +108,5 @@ Test the model:
 ```bash
 curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
-
- ***TODO: Overall, how to connect the two projects?***
  
  [>> Next: Do Predictions with trading_robot interface](https://github.com/IDS-721-Final-Project/trading_robot)
