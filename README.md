@@ -17,6 +17,11 @@ This project contains two parts:
 
 This repo is for the backend Kubernetes service part. How to use the trading robot is covered at the end.
 
+
+ ## Demo Video
+ [![Trading Robot](http://img.youtube.com/vi/Ad5MAU5j-QE/0.jpg)](https://www.youtube.com/watch?v=Ad5MAU5j-QE "IDS721 Final Proj Demo")
+ 
+
 # Usage
 
 ## 0. (Optional) Customize the Functionality
@@ -106,9 +111,8 @@ Test the model:
 ```bash
 curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
- 
- [>> Next: Do Predictions with trading_robot interface](https://github.com/IDS-721-Final-Project/trading_robot)
 
 
- ## Demo Video
- [![Trading Robot](http://img.youtube.com/vi/Ad5MAU5j-QE/0.jpg)](https://www.youtube.com/watch?v=Ad5MAU5j-QE "IDS721 Final Proj Demo")
+[>> Next: Do Predictions with trading_robot interface](https://github.com/IDS-721-Final-Project/trading_robot)
+
+
