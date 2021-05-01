@@ -108,3 +108,7 @@ curl http://[EXTERNAL_IP_ADDRESS]:5000/
 ```
  
  [>> Next: Do Predictions with trading_robot interface](https://github.com/IDS-721-Final-Project/trading_robot)
+
+
+ ## Demo Video
+ [![Trading Robot](http://img.youtube.com/vi/Ad5MAU5j-QE/0.jpg)](https://www.youtube.com/watch?v=Ad5MAU5j-QE "IDS721 Final Proj Demo")
